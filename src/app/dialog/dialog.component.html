@@ -1,0 +1,27 @@
+<div style="margin-top: 1rem;margin-bottom: 3rem;">
+    <span>Aggiungi un nuovo attrezzo e la sua quantità:</span>
+</div>
+
+<mat-form-field style="display: flex;justify-content: center;text-align: center;margin-top: 1rem;margin-left: auto;margin-right: auto;" appearance="fill">
+    <mat-label>Nome attrezzo</mat-label>
+    <input matInput [(ngModel)]="name">
+    <!-- <button mat-icon-button matSuffix [attr.aria-label]="'Name'"><mat-icon>perm_identity</mat-icon></button> -->
+</mat-form-field>
+
+<mat-form-field style="display: flex;justify-content: center;text-align: center;margin-top: 1rem;margin-left: auto;margin-right: auto;" appearance="fill">
+    <mat-label>Quantità</mat-label>
+    <input matInput [(ngModel)]="quantity" type="number">
+</mat-form-field>
+
+<!-- <md-input-container>
+    <mat-label>Quantità</mat-label>
+    <input
+        mdInput
+        type="number"
+        [(ngModel)]="quantity"
+    />
+</md-input-container> -->
+
+<span style="margin-top: 3rem;display: flex;justify-content: center;text-align: center;margin-left: auto;margin-right: auto;">
+    <button [mat-dialog-close]="true" style="background-color: green;color: white;" (click)="addTool()" mat-raised-button>ADD!</button>
+</span>
