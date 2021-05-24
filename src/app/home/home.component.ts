@@ -4,6 +4,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { interval } from 'rxjs';
 import { HistoryComponent } from '../history/history.component';
+import { formatDate } from "@angular/common";
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   url = "https://magazzino-d0dc0-default-rtdb.firebaseio.com/"
   tools: any[]=[]
-  displayedColumns: string[] = ['name', 'quantity', 'last_update', 'last_user'];
+  displayedColumns: string[] = ['name', 'quantity', 'last_update', 'last_user', 'missing'];
   showLoading = true
   res: any
   toUpdate: any
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit {
       this.showLoading = false
       this.tools = t
     })
-    interval(5000).subscribe(x => {this.getData()})
+    interval(2000).subscribe(x => {this.getData()})
   }
 
   getData(){
@@ -74,7 +75,7 @@ export class HomeComponent implements OnInit {
   updateTools(){
     Object.keys(this.res).forEach((key:any)=>{
       this.http.get(this.url+"tools/"+this.res[key].tool+".json").subscribe((r:any)=>{
-        this.toUpdate = {last_update:this.res[key].when,last_user:this.res[key].worker,name:this.res[key].tool,quantity:r.quantity-this.res[key].quantity}
+        this.toUpdate = {last_update:this.res[key].when,last_user:this.res[key].worker,name:this.res[key].tool,quantity:r.quantity-this.res[key].quantity,threshold:this.res[key].threshold}
         this.http.put(this.url+"tools/"+this.res[key].tool+".json",this.toUpdate).subscribe()
       })
     })

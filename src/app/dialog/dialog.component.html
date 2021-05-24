@@ -5,7 +5,6 @@
 <mat-form-field style="display: flex;justify-content: center;text-align: center;margin-top: 1rem;margin-left: auto;margin-right: auto;" appearance="fill">
     <mat-label>Nome attrezzo</mat-label>
     <input matInput [(ngModel)]="name">
-    <!-- <button mat-icon-button matSuffix [attr.aria-label]="'Name'"><mat-icon>perm_identity</mat-icon></button> -->
 </mat-form-field>
 
 <mat-form-field style="display: flex;justify-content: center;text-align: center;margin-top: 1rem;margin-left: auto;margin-right: auto;" appearance="fill">
@@ -13,14 +12,10 @@
     <input matInput [(ngModel)]="quantity" type="number">
 </mat-form-field>
 
-<!-- <md-input-container>
-    <mat-label>Quantità</mat-label>
-    <input
-        mdInput
-        type="number"
-        [(ngModel)]="quantity"
-    />
-</md-input-container> -->
+<mat-form-field style="display: flex;justify-content: center;text-align: center;margin-top: 1rem;margin-left: auto;margin-right: auto;" appearance="fill">
+    <mat-label>Quantità minima</mat-label>
+    <input matInput [(ngModel)]="threshold" type="number">
+</mat-form-field>
 
 <span style="margin-top: 3rem;display: flex;justify-content: center;text-align: center;margin-left: auto;margin-right: auto;">
     <button [mat-dialog-close]="true" style="background-color: green;color: white;" (click)="addTool()" mat-raised-button>ADD!</button>
