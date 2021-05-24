@@ -4,7 +4,6 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { interval } from 'rxjs';
 import { HistoryComponent } from '../history/history.component';
-import { formatDate } from "@angular/common";
 
 @Component({
   selector: 'app-home',
