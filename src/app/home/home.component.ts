@@ -4,6 +4,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { interval } from 'rxjs';
 import { HistoryComponent } from '../history/history.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +15,12 @@ export class HomeComponent implements OnInit {
 
   url = "https://magazzino-d0dc0-default-rtdb.firebaseio.com/"
   tools: any[]=[]
-  displayedColumns: string[] = ['name', 'quantity', 'last_update', 'last_user', 'missing'];
+  displayedColumns: string[] = ['name', 'quantity', 'last_update', 'last_user', 'missing', 'delete'];
   showLoading = true
   res: any
   toUpdate: any
 
-  constructor(private http: HttpClient, public dialog: MatDialog) { }
+  constructor(private http: HttpClient, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.showLoading = true
@@ -78,6 +79,18 @@ export class HomeComponent implements OnInit {
         this.http.put(this.url+"tools/"+this.res[key].tool+".json",this.toUpdate).subscribe()
       })
     })
+  }
+
+  deleteTool(name: string){
+    this.http.delete(this.url+"tools/"+name+".json").subscribe(()=>{
+      this.openSnackBar("Attrezzo eliminato!")
+    })
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, "", {
+      duration: 2000
+    });
   }
 
 }
