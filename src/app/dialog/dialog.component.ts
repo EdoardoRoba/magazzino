@@ -18,7 +18,7 @@ export class DialogComponent implements OnInit {
   }
 
   addTool(){
-    let tool = {name: this.name,quantity: this.quantity}
+    let tool = {name: this.name,quantity: this.quantity,last_update:(new Date()).toDateString(),last_user:""}
     this.http.put(this.url+"tools/"+this.name+".json",tool).subscribe()
   }
 

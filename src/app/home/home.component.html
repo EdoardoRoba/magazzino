@@ -1,4 +1,4 @@
-<mat-expansion-panel style="width: 80%;margin-left: auto;margin-right: auto;background-color: rgba(0, 47, 255, 0.308)">
+<mat-expansion-panel style="width: 80%;margin-bottom: 2rem;margin-left: auto;margin-right: auto;background-color: rgba(0, 47, 255, 0.308)">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <b>Attrezzi</b>
@@ -9,7 +9,7 @@
     </mat-expansion-panel-header>
 
     <div style="margin-top:1rem;margin-bottom: 2rem;display: flex;justify-content: center;text-align: center;margin-left: auto;margin-right: auto;" class="example-button-container">
-        <button (click)="openWindow()" mat-mini-fab style="background-color: green;" aria-label="Example icon button with a plus one icon">
+        <button (click)="openWindowAddTool()" mat-mini-fab style="background-color: green;" aria-label="Example icon button with a plus one icon">
           <mat-icon>plus_one</mat-icon>
         </button>
     </div>
@@ -33,6 +33,18 @@
             <th mat-header-cell *matHeaderCellDef> Quantità </th>
             <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
             </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="last_update">
+            <th mat-header-cell *matHeaderCellDef> Ultima modifica </th>
+            <td mat-cell *matCellDef="let element"> {{element.last_update}} </td>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="last_user">
+            <th mat-header-cell *matHeaderCellDef> Ultimo utilizzatore </th>
+            <td mat-cell *matCellDef="let element"> {{element.last_user}} </td>
+            </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -40,3 +52,22 @@
     </div>
 
   </mat-expansion-panel>
+
+<mat-expansion-panel style="width: 80%;margin-bottom: 2rem;margin-left: auto;margin-right: auto;background-color: rgba(0, 47, 255, 0.308)">
+    
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+          <b>Storico</b>
+        </mat-panel-title>
+        <mat-panel-description>
+          Guarda lo storico degli attrezzi
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div style="margin-top:1rem;margin-bottom: 2rem;display: flex;justify-content: center;text-align: center;margin-left: auto;margin-right: auto;" class="example-button-container">
+        <button (click)="openWindowAddHistory()" mat-mini-fab style="background-color: red;" aria-label="Example icon button with a plus one icon">
+          <mat-icon>plus_one</mat-icon>
+        </button>
+    </div>
+
+</mat-expansion-panel>

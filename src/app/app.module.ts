@@ -19,12 +19,15 @@ import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
+import { HistoryComponent } from './history/history.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DialogComponent
+    DialogComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { MatTableModule } from '@angular/material/table';
     HttpClientModule,
     MatDialogModule,
     FormsModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
