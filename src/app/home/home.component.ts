@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { interval } from 'rxjs';
 import { HistoryComponent } from '../history/history.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NewcategoryComponent } from '../newcategory/newcategory.component';
 
 @Component({
   selector: 'app-home',
@@ -15,15 +16,27 @@ export class HomeComponent implements OnInit {
 
   url = "https://magazzino-d0dc0-default-rtdb.firebaseio.com/"
   tools: any[]=[]
-  displayedColumns: string[] = ['name', 'quantity', 'last_update', 'last_user', 'missing', 'delete'];
+  displayedColumns: string[] = ['name', 'category', 'quantity', 'last_update', 'last_user', 'missing', 'delete'];
   showLoading = true
   res: any
   toUpdate: any
+  categories: any[]=[]
+  // categories = [{label:"Elettrico",value:"elettrico"}]
+  selectedCategory = ""
 
   constructor(private http: HttpClient, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.showLoading = true
+
+    let cats: any[]=[]
+    this.http.get(this.url+"categories.json").subscribe((response: any) => {
+      Object.keys(response).forEach(element => {
+        cats.push(element)
+      });
+      this.categories = cats
+    })
+
     let t: any[]=[]
     this.http.get(this.url+"tools.json").subscribe((response: any) => {
       Object.keys(response).forEach(element => {
@@ -31,18 +44,26 @@ export class HomeComponent implements OnInit {
       });
       this.showLoading = false
       this.tools = t
+      if (this.selectedCategory!=="tutte le categorie"){
+        this.tools = this.tools.filter((obj:any) => obj.category === this.selectedCategory);
+      }
     })
     interval(2000).subscribe(x => {this.getData()})
+    interval(30000).subscribe(x => {this.updateCategories()})
   }
 
   getData(){
     let t: any[]=[]
+    console.log("cat",this.selectedCategory)
     this.showLoading = false
     this.http.get(this.url+"tools.json").subscribe((response: any) => {
       Object.keys(response).forEach(element => {
         t.push(response[element])
       });
       this.tools = t
+      if (this.selectedCategory!=="tutte le categorie"){
+        this.tools = this.tools.filter((obj:any) => obj.category === this.selectedCategory);
+      }
     })
   }
 
@@ -84,6 +105,28 @@ export class HomeComponent implements OnInit {
   deleteTool(name: string){
     this.http.delete(this.url+"tools/"+name+".json").subscribe(()=>{
       this.openSnackBar("Attrezzo eliminato!")
+    })
+  }
+
+  addNewCategory(){
+    const dialogRef = this.dialog.open(NewcategoryComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      // this.retrievedData = []
+      this.showLoading = true
+      this.updateCategories()
+    });
+
+  }
+
+  updateCategories(){
+    let cats: any[]=[]
+    this.http.get(this.url+"categories.json").subscribe((response: any) => {
+      Object.keys(response).forEach(element => {
+        cats.push(element)
+      });
+      this.categories = cats
     })
   }
 

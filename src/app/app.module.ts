@@ -21,13 +21,16 @@ import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { HistoryComponent } from './history/history.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { NewcategoryComponent } from './newcategory/newcategory.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     DialogComponent,
-    HistoryComponent
+    HistoryComponent,
+    NewcategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDialogModule,
     FormsModule,
     MatTableModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

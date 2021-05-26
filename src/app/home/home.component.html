@@ -1,3 +1,24 @@
+
+<mat-expansion-panel style="width: 80%;margin-bottom: 2rem;margin-left: auto;margin-right: auto;background-color: rgba(0, 47, 255, 0.308)">
+    
+  <mat-expansion-panel-header>
+      <mat-panel-title>
+        <b>Reparti</b>
+      </mat-panel-title>
+      <mat-panel-description>
+        Aggiungi una nuovo reparto al tuo magazzino
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div style="margin-top:1rem;margin-bottom: 2rem;display: flex;justify-content: center;text-align: center;margin-left: auto;margin-right: auto;" class="example-button-container">
+      <button (click)="addNewCategory()" mat-mini-fab style="background-color: rgba(255, 200, 50, 0.801);" aria-label="Example icon button with a plus one icon">
+        <mat-icon>plus_one</mat-icon>
+      </button>
+  </div>
+
+</mat-expansion-panel>
+
+
 <mat-expansion-panel style="width: 80%;margin-bottom: 2rem;margin-left: auto;margin-right: auto;background-color: rgba(0, 47, 255, 0.308)">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -14,7 +35,14 @@
         </button>
     </div>
 
-    <div style="display: flex;justify-content: center;text-align: center;margin-top: 1rem;" *ngIf="showLoading" class="lds-circle"><div></div></div>
+    <mat-form-field style="margin-top:1rem;margin-bottom: 2rem;display: flex;justify-content: center;text-align: center;margin-left: auto;margin-right: auto;" appearance="fill">
+      <mat-label>Scegli un reparto</mat-label>
+      <mat-select [(ngModel)]="selectedCategory">
+        <mat-option *ngFor="let cat of categories" value="{{cat}}">{{cat}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div style="display: flex;justify-content: center;text-align: center;margin-top: 1rem;" *ngIf="showLoading && selectedCategory.length>0" class="lds-circle"><div></div></div>
 
     <div style="max-height: fit-content;" *ngIf="tools.length>=0">
         <table style="margin-right: auto;margin-left: auto;width: 80%;" mat-table [dataSource]="tools" class="mat-elevation-z8">
@@ -26,6 +54,12 @@
             <ng-container matColumnDef="name">
             <th mat-header-cell style="justify-content: center;text-align: center;" *matHeaderCellDef> Nome attrezzo </th>
             <td mat-cell style="justify-content: center;text-align: center;" *matCellDef="let element">{{element.name}}</td>
+            </ng-container>
+        
+            <!-- Position Column -->
+            <ng-container matColumnDef="category">
+            <th mat-header-cell style="justify-content: center;text-align: center;" *matHeaderCellDef> Category </th>
+            <td mat-cell style="justify-content: center;text-align: center;" *matCellDef="let element">{{element.category}}</td>
             </ng-container>
         
             <!-- Name Column -->
@@ -83,7 +117,7 @@
           <b>Storico</b>
         </mat-panel-title>
         <mat-panel-description>
-          Guarda lo storico degli attrezzi
+          Aggiungi storico degli attrezzi
         </mat-panel-description>
       </mat-expansion-panel-header>
 
@@ -94,3 +128,7 @@
     </div>
 
 </mat-expansion-panel>
+
+<br>
+<br>
+<br>

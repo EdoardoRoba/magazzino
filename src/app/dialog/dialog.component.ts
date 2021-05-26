@@ -16,6 +16,7 @@ export class DialogComponent implements OnInit {
   toolsNames: any[]=[]
   tools: any[]=[]
   toUpdate: any
+  category = ""
 
   constructor(private http: HttpClient) { }
 
@@ -37,7 +38,7 @@ export class DialogComponent implements OnInit {
     const format = 'dd/MM/yyyy';
     const locale = 'en-US';
     if (!this.checkIfToolsExist()){
-      let tool = {name: this.name,quantity: this.quantity,last_update:formatDate(new Date(), format, locale),last_user:"",threshold:this.threshold}
+      let tool = {name: this.name,quantity: this.quantity,last_update:formatDate(new Date(), format, locale),last_user:"",threshold:this.threshold,category:this.category}
       this.http.put(this.url+"tools/"+this.name+".json",tool).subscribe()
     } else {
       let toU: any
