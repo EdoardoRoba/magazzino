@@ -1,5 +1,5 @@
 
-<mat-expansion-panel style="width: 80%;margin-bottom: 2rem;margin-left: auto;margin-right: auto;background-color: rgba(0, 47, 255, 0.308)">
+<mat-expansion-panel *ngIf="user!=='default'" style="width: 80%;margin-bottom: 2rem;margin-left: auto;margin-right: auto;background-color: rgba(0, 47, 255, 0.308)">
     
   <mat-expansion-panel-header>
       <mat-panel-title>
@@ -19,7 +19,7 @@
 </mat-expansion-panel>
 
 
-<mat-expansion-panel style="width: 80%;margin-bottom: 2rem;margin-left: auto;margin-right: auto;background-color: rgba(0, 47, 255, 0.308)">
+<mat-expansion-panel *ngIf="user!=='default'" style="width: 80%;margin-bottom: 2rem;margin-left: auto;margin-right: auto;background-color: rgba(0, 47, 255, 0.308)">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <b>Attrezzi</b>
@@ -110,7 +110,7 @@
 
   </mat-expansion-panel>
 
-<mat-expansion-panel style="width: 80%;margin-bottom: 2rem;margin-left: auto;margin-right: auto;background-color: rgba(0, 47, 255, 0.308)">
+<mat-expansion-panel *ngIf="user!=='default'" style="width: 80%;margin-bottom: 2rem;margin-left: auto;margin-right: auto;background-color: rgba(0, 47, 255, 0.308)">
     
     <mat-expansion-panel-header>
         <mat-panel-title>
@@ -128,6 +128,15 @@
     </div>
 
 </mat-expansion-panel>
+
+<div style="display: flex;justify-content: center;text-align: center;" *ngIf="user==='default'">
+    <div style="margin-bottom: 2rem;display: flex;justify-content: center;text-align: center;">
+      <mat-icon style="font-size: 100px;color: red;">report_problem</mat-icon>
+    </div>
+    <div style="margin-top: 7rem;display: flex;justify-content: center;text-align: center;">
+      <a mat-raised-button routerLink="/login">Accedi di nuovo</a>
+    </div>
+</div>
 
 <br>
 <br>

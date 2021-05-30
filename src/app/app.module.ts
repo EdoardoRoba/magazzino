@@ -23,6 +23,8 @@ import { HistoryComponent } from './history/history.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { NewcategoryComponent } from './newcategory/newcategory.component';
+import { LoginComponent } from './login/login.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { NewcategoryComponent } from './newcategory/newcategory.component';
     HomeComponent,
     DialogComponent,
     HistoryComponent,
-    NewcategoryComponent
+    NewcategoryComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { NewcategoryComponent } from './newcategory/newcategory.component';
     FormsModule,
     MatTableModule,
     MatSnackBarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

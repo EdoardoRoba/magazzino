@@ -6,6 +6,7 @@ import { interval } from 'rxjs';
 import { HistoryComponent } from '../history/history.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NewcategoryComponent } from '../newcategory/newcategory.component';
+import { CommunicationService } from '../services/communication.service';
 
 @Component({
   selector: 'app-home',
@@ -23,12 +24,15 @@ export class HomeComponent implements OnInit {
   categories: any[]=[]
   // categories = [{label:"Elettrico",value:"elettrico"}]
   selectedCategory = ""
+  user = ""
 
-  constructor(private http: HttpClient, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
+  constructor(private http: HttpClient, public dialog: MatDialog, private _snackBar: MatSnackBar, private data: CommunicationService) { }
 
   ngOnInit(): void {
-    this.showLoading = true
+    this.data.currentMessage.subscribe(message => this.user = message)
+    console.log("USR: ",this.user)
 
+    this.showLoading = true
     let cats: any[]=[]
     this.http.get(this.url+"categories.json").subscribe((response: any) => {
       Object.keys(response).forEach(element => {
@@ -54,7 +58,6 @@ export class HomeComponent implements OnInit {
 
   getData(){
     let t: any[]=[]
-    console.log("cat",this.selectedCategory)
     this.showLoading = false
     this.http.get(this.url+"tools.json").subscribe((response: any) => {
       Object.keys(response).forEach(element => {
