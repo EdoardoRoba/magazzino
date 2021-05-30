@@ -129,13 +129,10 @@
 
 </mat-expansion-panel>
 
-<div style="display: flex;justify-content: center;text-align: center;" *ngIf="user==='default'">
-    <div style="margin-bottom: 2rem;display: flex;justify-content: center;text-align: center;">
-      <mat-icon style="font-size: 100px;color: red;">report_problem</mat-icon>
-    </div>
-    <div style="margin-top: 7rem;display: flex;justify-content: center;text-align: center;">
-      <a mat-raised-button routerLink="/login">Accedi di nuovo</a>
-    </div>
+<div *ngIf="user==='default'">
+  <div style="margin-top: 7rem;display: flex;justify-content: center;text-align: center;">
+    <a mat-raised-button color="warn" routerLink="/login">Accedi di nuovo</a>
+  </div>
 </div>
 
 <br>
